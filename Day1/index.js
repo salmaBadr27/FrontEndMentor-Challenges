@@ -1,13 +1,13 @@
-function SharePopup(shareBtn) {
-	var box = document.getElementById("box");
+const divFooter1 = document.querySelector("#footer-1");
+const divFooter2 = document.querySelector("#footer-2");
+const triggerFooter1 = document.querySelector("#footer-1 .social-link");
+const triggerFooter2 = document.querySelector("#footer-2 .social-link");
 
-	if (box.style.display === "none") {
-		box.style.display = "flex";
-		shareBtn.style.background = "#4c535b";
-		document.getElementsByTagName("path")[0].style.fill = "#fff";
-	} else {
-		box.style.display = "none";
-		shareBtn.style.background = "#edf2f8";
-		document.getElementsByTagName("path")[0].style.fill = "#6E8098";
-	}
+triggerFooter1.addEventListener("click", toggleFooter);
+triggerFooter2.addEventListener("click", toggleFooter);
+
+function toggleFooter(e) {
+	e.preventDefault();
+	divFooter2.classList.toggle("display-social");
+	divFooter2.classList.toggle("hide-social");
 }

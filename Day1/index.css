@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Source Sans Pro&display=swap");
-
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
 .container {
 	display: flex;
 	flex-direction: column;
@@ -34,85 +38,133 @@ img {
 .card-right {
 	display: flex;
 	flex-direction: column;
-	width: 50%;
-	margin: 24px;
+	width: 55%;
 }
 .card-heading {
 	color: #4c535b;
+	margin: 24px;
 }
 .card-content {
 	color: #767a83;
 	line-height: 40px;
 	font-size: 22px;
+	margin: 24px;
 }
-.card-footer {
-	display: flex;
+#footer,
+#footer-1,
+#footer-2 {
 	width: 100%;
-	justify-content: space-between;
-	margin-top: 4rem;
-	align-items: center;
+	height: 100px;
 }
-.card-footer img {
-	height: auto;
-}
-.card-footer span {
-	color: #767a83;
-}
-.card-footer h3 {
-	color: #4c535b;
-}
-.avatar {
-	display: flex;
-}
-.avatar img {
-	border-radius: 50%;
-	width: 40px;
-	height: 40px;
-	margin: 18.72px;
-}
-.share {
-	cursor: pointer;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background: #edf2f8;
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-}
-/* .share svg path {
-	fill: #fff;
-} */
 
-.com_box {
-	width: 206px;
-	height: 56px;
-	background: #4c535b;
-	color: white;
-	float: left;
-	display: none;
-	justify-content: space-around;
-	align-items: center;
-	margin-right: 8px;
-	margin-right: -458px;
-	margin-bottom: 157px;
+#footer {
 	position: relative;
-	border-radius: 10px;
 }
-.com_box:after {
-	content: "";
+
+#footer-1,
+#footer-2 {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: space-between;
+	padding: 20px;
+}
+
+#footer-2 {
+	background-color: hsl(217, 19%, 35%);
 	position: absolute;
-	top: 100%;
-	left: 50%;
-	margin-left: -16px;
-	width: 0px;
-	height: 0px;
-	border-style: solid;
-	border-width: 18px 10px 0px 13px;
-	border-color: #4c535b transparent transparent transparent;
+	top: 0;
+	left: 0;
+	transition: opacity 0.2s;
+	border-radius: 0 0 10px 10px;
 }
-.com_box p {
-	color: #fff;
+
+/* For both footer-1 and footer-2 */
+.footer-left {
+	flex: 1 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: start;
+}
+
+#footer-2 .social-share {
+	flex: 1 0 auto;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-evenly;
+}
+
+.footer-right {
+	flex: 0 0 30px;
+	height: 30px;
+}
+
+.avatar-wrapper {
+	margin-right: 15px;
+}
+
+img.avatar {
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+}
+
+.social-link {
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+.social-link a {
+	color: white;
+}
+#footer-1 .social-link {
+	background-color: hsl(210, 46%, 95%);
+}
+
+#footer-2 .social-link {
+	background-color: hsl(214, 17%, 51%);
+}
+
+.social-share span:first-child {
+	color: hsl(212, 23%, 69%);
+	text-transform: uppercase;
+	letter-spacing: 0.4em;
+	margin-right: 0.4em;
+}
+
+.icon-fb,
+.icon-instagram,
+.icon-twitter {
+	display: block;
+	width: 20px;
+}
+
+.icon-fb::before {
+	content: url("./images/icon-facebook.svg");
+	width: 20px;
+}
+.icon-twitter::before {
+	content: url("./images/icon-twitter.svg");
+}
+.icon-pinterest::before {
+	content: url("./images/icon-pinterest.svg");
+}
+
+.display-social {
+	display: flex;
+	opacity: 1;
+	/* transition: display 0.5s, opacity 1s; */
+}
+
+.hide-social {
+	display: none;
+	opacity: 0;
+	/* transition: display 0.5s, opacity 1s; */
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -133,15 +185,45 @@ img {
 	.card-right h1 {
 		font-size: 1.5rem;
 	}
-	.share {
-		width: 40px;
-		height: 40px;
-	}
+
 	.avatar img {
 		margin: 10.72px;
 	}
 	.card-content {
 		font-size: 19px;
+	}
+}
+
+/* 600px and up*/
+@media only screen and (min-width: 600px) {
+	#footer {
+		grid-area: foot;
+	}
+	#footer-2 {
+		height: 50px;
+		max-width: 200px;
+		border-radius: 10px;
+		transform: translate(220px, -30px);
+	}
+
+	#footer-2 .social-share {
+		justify-content: space-around;
+	}
+
+	#footer-2 .footer-right {
+		display: none;
+	}
+
+	#footer-2::after {
+		content: "";
+		position: absolute;
+		width: 0;
+		height: 0;
+		left: 125px;
+		bottom: -20px;
+		border: 10px solid transparent;
+		border-top: 10px solid hsl(217, 19%, 35%);
+		z-index: 1;
 	}
 }
 @media only screen and (max-width: 922px) {
@@ -176,5 +258,10 @@ img {
 	}
 	.card-img {
 		border-radius: 13px 13px 0 0;
+	}
+}
+@media only screen and (max-width: 1440px) {
+	.com_box {
+		margin-right: -241px;
 	}
 }
